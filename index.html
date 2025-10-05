@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjot Singh | AI & Data Science Specialist</title>
+    <style>
+      html { scroll-behavior: smooth; }
+      .cert-gallery-horizontal,
+      .participation-gallery {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: visible !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        gap: 24px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .cert-gallery-horizontal img,
+      .participation-gallery img {
+        object-fit: contain !important;
+        width: 100% !important;
+        max-width: 640px !important;
+        height: auto !important;
+        margin: 0 auto;
+        display: block;
+        border-radius: 14px;
+        box-shadow: 0 0 25px rgba(0, 224, 255, 0.5);
+      }
+      /* --- Internship Cards Flexbox Grid --- */
+      .experience-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: center;
+        align-items: stretch;
+        margin-top: 32px;
+        margin-bottom: 12px;
+      }
+      .internship-card {
+        flex: 1 1 340px;
+        min-width: 320px;
+        max-width: 520px;
+        background: linear-gradient(145deg,#071b2b,#0b2435);
+        border: 2px solid #00e0ff80;
+        border-radius: 14px;
+        box-shadow: 0 0 22px rgba(0,224,255,0.15);
+        padding: 20px 18px 22px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        transition: transform 0.25s, box-shadow 0.25s;
+        /* Ensure equal min-height for both cards for balance */
+        min-height: 570px;
+      }
+      .internship-card:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 0 36px rgba(0,224,255,0.35);
+      }
+      .company-header-main {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+      .company-logo-large img {
+        display: block;
+      }
+      .task-list {
+        margin: 10px 0 12px 24px;
+        padding: 0;
+      }
+      .cert-display-box, .award-display-box {
+        margin: 8px 0 0 0;
+      }
+      .internship-image-display {
+        margin: 20px auto 0 auto !important;
+        text-align: center;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .internship-image-display img {
+        width: 100%;
+        max-width: 420px;
+        min-width: 200px;
+        height: auto;
+        margin: 0 auto;
+        box-shadow: 0 0 28px rgba(0,224,255,0.5);
+        border: 2px solid rgba(0,224,255,0.7);
+        border-radius: 14px;
+      }
+      @media (max-width: 1100px) {
+        .experience-grid {
+          flex-direction: column;
+          gap: 32px;
+        }
+        .internship-card {
+          max-width: 98vw;
+        }
+      }
+      @media (max-width: 700px) {
+        .experience-grid {
+          flex-direction: column;
+          gap: 22px;
+        }
+        .internship-card {
+          min-width: 0;
+          max-width: 100vw;
+          padding: 12px 5vw;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* Neon streaks overlay for particles.js */
+      #rain-overlay {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        background: transparent;
+        mix-blend-mode: lighten;
+        transition: opacity 0.3s;
+        opacity: 1;
+        /* Make sure overlay covers everything but does not block input */
+      }
+      #rain-overlay canvas {
+        pointer-events: none !important;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100vw !important;
+        height: 100vh !important;
+        min-width: 100vw;
+        min-height: 100vh;
+        display: block;
+        z-index: 9999;
+        opacity: 1;
+        /* For clarity, no filter here; effect is handled in JS */
+      }
+    </style>
+    <!-- Google Font: Inter for modern clean look, Space Mono for tech feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- 0. Main Container for the Entire App -->
+    <div class="main-container">
+
+        <!-- 1. Floating Navigation Header -->
+        <header class="floating-header">
+            <div class="logo-container">
+                <!-- Real profile mini photo -->
+                <div class="profile-photo-mini">
+                    <img src="images/me.png" alt="Manjot Singh Mini Profile Photo" width="40" height="40">
+                </div>
+                <span>MANJOT SINGH <span class="highlight-text-secondary">// DATA STREAM</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link"><i class="fas fa-home"></i> HOME</a>
+                <a href="#profile" class="nav-link"><i class="fas fa-user-tie"></i> PROFILE</a>
+                <a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> EXPERIENCE</a>
+                <a href="#skill-matrix" class="nav-link"><i class="fas fa-chart-bar"></i> SKILLS</a>
+                <a href="#projects" class="nav-link"><i class="fas fa-project-diagram"></i> PROJECTS</a>
+                <a href="#certifications" class="nav-link"><i class="fas fa-graduation-cap"></i> CERTS</a>
+                <a href="#contact-footer" class="nav-link"><i class="fas fa-paper-plane"></i> CONTACT</a>
+            </nav>
+            <a href="Resume.docx" download class="cta-download-header">
+                <i class="fas fa-download"></i> DOWNLOAD RESUME
+            </a>
+            <!-- Dark/Light mode toggle switch -->
+            <button id="mode-toggle" aria-label="Toggle dark/light mode" style="margin-left:1rem;font-size:1.2rem;background:none;border:none;cursor:pointer;">
+                <i id="mode-icon" class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <!-- 2. Main Content Area -->
+        <main class="content-area">
+
+            <!-- A. Hero Section - Immersive Header/Display -->
+            <section id="hero" class="dashboard-panel hero-section" data-reveal>
+                <!-- Particle.js animated background -->
+                <div id="particles-js" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;"></div>
+                <div class="hero-content">
+                    <p class="data-stream-status">// STATUS: ONLINE | CONNECTION: SECURE</p>
+                    <h2 class="hero-title">Hello, I'm <span class="highlight-text">Manjot Singh</span></h2>
+                    <!-- This h1 gets the dynamic typing effect from script.js -->
+                    <h1 class="animated-text"><span class="cursor">|</span></h1> 
+                    <p class="summary-text">
+                        A dedicated Computer Science student specializing in the convergence of **Artificial Intelligence and Data Science**. I leverage **Python, Machine Learning (ML), and data visualization** tools like Streamlit to solve complex real-world problems and develop impactful, real-time applications. My goal is to transform raw data into cutting-edge predictive systems.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label">LinkedIn Followers</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">9.61</span>
+                            <span class="stat-label">AI/DS SGPA</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Major Projects Completed</span>
+                        </div>
+                    </div>
+                     <a href="#contact-footer" class="shimmer-cta">
+                        INITIATE CONTACT PROTOCOL
+                    </a>
+                </div>
+                <!-- Profile Image container for better styling -->
+                <div class="hero-profile-image" style="display:flex;gap:1.2rem;align-items:center;z-index:2;position:relative;">
+                    <img src="images/me.png" alt="Manjot Singh smiling at the camera, main profile photo" class="profile-photo" width="230" height="230" style="border-radius:50%;box-shadow:0 4px 24px #00e0ff40;">
+                    <img src="images/me2.jpg" alt="Manjot Singh working on a laptop, candid profile" class="profile-photo-secondary" width="120" height="120" style="border-radius:50%;box-shadow:0 4px 16px #00e0ff30;">
+                </div>
+            </section>
+
+            <!-- B. Profile & Education Section -->
+            <section id="profile" class="dashboard-panel" data-reveal>
+                <h3 class="section-title">01. PROFILE & EDUCATION MATRIX</h3>
+                <div class="profile-matrix-grid">
+                    
+                    <div class="profile-summary">
+                        <h4>Strategic Career Objective</h4>
+                        <p>
+                            Seeking to drive technological innovation as a **Data Scientist or ML Engineer**, utilizing strong foundational knowledge in statistical modeling and predictive analytics. I excel at translating raw data into actionable business intelligence through robust visualization and scalable model deployment. My commitment is to continuous skill refinement in deep learning and large language models (LLMs) to contribute meaningfully to cutting-edge AI research.
+                        </p>
+                        <ul class="interpersonal-list">
+                            <li><i class="fas fa-comments highlight-text"></i> Effective Communication Skills</li>
+                            <li><i class="fas fa-lightbulb highlight-text"></i> Creative Problem-Solving & Critical Thinking</li>
+                            <li><i class="fas fa-clock highlight-text"></i> Excellent Time Management & Project Delivery</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="education-details">
+                        <h4>Educational Qualifications</h4>
+                        <!-- GNA University -->
+                        <div class="edu-item">
+                            <div class="school-logo">
+                                <img src="images/c.png" alt="GNA University Logo" style="width:38px;height:38px;border-radius:8px;">
+                            </div>
+                            <h5>B.Tech CSE (Data Science with AI) - Pursuing</h5>
+                            <p>GNA University, Phagwara, Punjab | July 2022 - Present</p>
+                            <span class="score-tag">CGPA: 8.56 | AI/DS SGPA: 9.61 (High Marks)</span>
+                        </div>
+                        <!-- DAV School -->
+                        <div class="edu-item">
+                            <div class="school-logo">
+                                <img src="images/d.png" alt="DAV School Logo" style="width:38px;height:38px;border-radius:8px;">
+                            </div>
+                            <h5>Senior Secondary Examination, CBSE</h5>
+                            <p>DAV School, Mukandpur | 2021-2022 | Score: 88%</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            <!-- C. Work Experience & Training Section -->
+            <section id="experience" class="dashboard-panel" data-reveal>
+                <h3 class="section-title">02. INTERNSHIP & CAREER TRAJECTORY</h3>
+                <div class="experience-grid">
+                    <!-- Internship 1: A2IT -->
+                    <div class="internship-card" style="box-shadow: 0 6px 30px rgba(0,224,255,0.25), 0 2px 24px rgba(0,224,255,0.13); background: linear-gradient(140deg,#071b2b 80%,#0b2435 100%); position:relative;">
+                        <div style="position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:14px;box-shadow:0 12px 48px 8px rgba(0,224,255,0.13);"></div>
+                        <div class="company-header-main" style="position:relative;z-index:1;">
+                            <div class="company-logo-large">
+                                <img src="images/a.png" alt="A2IT Logo" style="width:48px;height:48px;border-radius:8px;">
+                            </div>
+                            <div>
+                                <h5>AI & Machine Learning Intern, A2IT, Mohali</h5>
+                                <span class="date">June 2025 - August 2025</span>
+                            </div>
+                        </div>
+                        <ul class="task-list" style="position:relative;z-index:1;">
+                            <li>Implemented <b>supervised and unsupervised ML models</b> to solve real-world problems, maximizing prediction accuracy on diverse datasets.</li>
+                            <li>Executed robust data preprocessing and <b>feature engineering</b> to build and optimize predictive models, evaluated using key metrics.</li>
+                        </ul>
+                        <!-- Download Link for Internship Certificate -->
+                        <div class="cert-display-box" style="position:relative;z-index:1;">
+                            <p>A2IT Internship Completion Certificate</p>
+                            <a href="certificates/A2IT_Certificate.pdf" download class="cert-download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                        </div>
+                        <div class="internship-image-display" style="position:relative;z-index:1;">
+                            <img src="images/p.png" alt="A2IT Internship Certificate">
+                        </div>
+                    </div>
+                    <!-- Internship 2: 07 Services -->
+                    <div class="internship-card">
+                        <div class="company-header-main">
+                            <div class="company-logo-large">
+                                <img src="images/b.png" alt="07 Services Logo" style="width:48px;height:48px;border-radius:8px;">
+                            </div>
+                            <div>
+                                <h5>Data Analysis & Visualization Intern, 07 Services</h5>
+                                <span class="date">June 2024 - July 2024</span>
+                            </div>
+                        </div>
+                        <ul class="task-list">
+                            <li>Conducted extensive <b>data analysis using Python</b>, applying statistical techniques to extract meaningful insights from complex datasets.</li>
+                            <li>Developed and deployed <b>interactive data dashboards using Streamlit</b>, enhancing data accessibility and user analysis capabilities.</li>
+                        </ul>
+                        <!-- Download Link for Internship Certificate -->
+                        <div class="cert-display-box">
+                            <p>07 Services Internship Completion Certificate</p>
+                            <a href="certificates/07Services_Certificate.pdf" download class="cert-download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                        </div>
+                        <div class="internship-image-display">
+                            <img src="images/o.png" alt="07 Services Internship Certificate">
+                        </div>
+                        <!-- Best Batch Student Award at 07 Services -->
+                        <div class="award-display-box" style="margin-top:12px;padding:12px;border-left:4px solid #00e0ff;border-radius:6px;background:rgba(0,224,255,0.05);box-shadow:0 0 18px rgba(0,224,255,0.3);">
+                            <h5 style="margin:0;color:#00e0ff;">🏅 Best Batch Student Award — 07 Services</h5>
+                            <p style="margin:4px 0 0;">Awarded for outstanding performance, leadership, and innovation during the internship program.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- D. NEW INTERACTIVE SKILL MATRIX -->
+            <section id="skill-matrix" class="dashboard-panel differentiation-panel" data-reveal>
+                <h3 class="section-title">03. INTERACTIVE SKILL MATRIX // AI PROPHECY</h3>
+                <p class="section-subtitle">
+                    My expertise across the data science pipeline, visualized for instant assessment. Hover over the bars to see my commitment.
+                </p>
+                <div class="skill-matrix-grid">
+                    <!-- Skill 1: Python/Programming -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">PYTHON & PROGRAMMING <i class="fab fa-python"></i></div>
+                        <div class="skill-bar" data-level="95">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                    <!-- Skill 2: Machine Learning -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">MACHINE LEARNING (ML) <i class="fas fa-brain"></i></div>
+                        <div class="skill-bar" data-level="90">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                    <!-- Skill 3: Data Visualization -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">DATA VISUALIZATION (STREAMLIT) <i class="fas fa-chart-area"></i></div>
+                        <div class="skill-bar" data-level="85">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                    <!-- Skill 4: SQL/Database -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">SQL & DATABASE MANAGEMENT <i class="fas fa-database"></i></div>
+                        <div class="skill-bar" data-level="80">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                    <!-- Skill 5: Deep Learning/LLMs -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">DEEP LEARNING & LLMs <i class="fas fa-microchip"></i></div>
+                        <div class="skill-bar" data-level="75">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                    <!-- Skill 6: C++/Java -->
+                    <div class="skill-bar-container">
+                        <div class="skill-label">C++ / JAVA / R <i class="fas fa-code"></i></div>
+                        <div class="skill-bar" data-level="70">
+                            <div class="skill-progress" style="width: 0;">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- E. Projects Section -->
+            <section id="projects" class="dashboard-panel" data-reveal>
+                <h3 class="section-title">04. IMPACTFUL DATA SCIENCE PROJECTS</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h4><i class="fas fa-chart-line"></i> Olympics Analysis (Data Visualization)</h4>
+                        <p>Comprehensive historical data analysis using Python and Streamlit to visualize trends, medal tallies, and athlete performance over decades. This enhances understanding of global sporting dynamics.</p>
+                        <span class="tech-used">Python, Streamlit, Pandas, Seaborn</span>
+                    </div>
+                    <div class="project-card">
+                        <h4><i class="fas fa-chart-area"></i> APPLE Stock Prediction (ML)</h4>
+                        <p>Developed a time-series model (ARIMA/LSTM) to forecast future stock prices for Apple Inc. with high predictive accuracy, demonstrating proficiency in financial data modeling.</p>
+                        <span class="tech-used">Machine Learning, Time Series, Python, TensorFlow/Keras</span>
+                    </div>
+                    <div class="project-card">
+                        <h4><i class="fas fa-id-card"></i> AI Powered Resume Maker (NLP/AI)</h4>
+                        <p>An NLP-based application designed to parse, analyze, and generate optimized resumes based on job descriptions and candidate skills, automating the screening process.</p>
+                        <span class="tech-used">NLP, AI, Streamlit, Python</span>
+                    </div>
+                    <div class="project-card">
+                        <h4><i class="fas fa-stethoscope"></i> MediAI: Healthcare Recommendation (ML)</h4>
+                        <p>Machine learning system providing personalized healthcare/treatment recommendations based on patient historical data and symptoms, focusing on improving diagnostic accuracy.</p>
+                        <span class="tech-used">Machine Learning, Scikit-learn, Healthcare Data</span>
+                    </div>
+                </div>
+                <div class="github-cta-container">
+                    <a href="https://github.com/manjotsingh9864" target="_blank" class="github-cta-link">
+                         <i class="fab fa-github"></i> VIEW ALL REPOSITORIES ON GITHUB
+                    </a>
+                </div>
+            </section>
+            
+            <!-- F. DATA STREAM (Image insertion point - using me2.png, which is Gemini_Generated_Image_oy12jcoy12jcoy12.jpg) -->
+            <section id="data-stream" class="dashboard-panel data-stream-panel" data-reveal>
+                <h3 class="section-title">05. THE DATA STREAM: A DAY IN THE LIFE <span class="highlight-text-secondary">// REAL-TIME DATA ANALYSIS</span></h3>
+                <div class="data-stream-content">
+                    <div class="data-stream-text">
+                        <h4>From Code to Cognition: The Process of Innovation</h4>
+                        <p>
+                            My approach to Data Science is hands-on and immersive. It begins with identifying a meaningful problem, moves through meticulous **data cleansing and exploratory analysis**, and culminates in the development of a robust, production-ready model. This image captures the essence of my work environment—a focus on complex datasets, deep learning models, and the continuous search for the next powerful algorithm.
+                        </p>
+                        <p>
+                            I don't just write code; I design systems that think. This dedication ensures that every project I deliver is not just technically sound, but delivers **maximum actionable intelligence** to solve key business or academic challenges. My recent explorations include **Generative AI** techniques to push the boundaries of model creation.
+                        </p>
+                        <a href="#projects" class="stream-cta">View My Live Projects <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <!-- Image of Manjot working -->
+                    <div class="data-stream-image-container">
+                         <img src="images/me2.jpg" alt="Manjot Singh working on Artificial Intelligence and Data Science models at his desk" class="data-stream-image" width="340" height="420" style="border-radius:16px;box-shadow:0 6px 28px #00e0ff35;">
+                    </div>
+                </div>
+            </section>
+    
+            <!-- G. Certifications Gallery (Horizontal Rectangle Requirement with downloads) -->
+            <section id="certifications" class="dashboard-panel" data-reveal>
+                <h3 class="section-title">06. CERTIFICATIONS // SKILL VALIDATION</h3>
+                <div class="cert-gallery-horizontal scroll-container" style="display:flex;overflow-x:auto;gap:20px;scroll-snap-type:x mandatory;padding-bottom:10px;">
+                    <div class="cert-card-large"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                        onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                    >
+                        <img src="images/g.png" alt="AWS Academy Certificate" class="cert-large-img"
+                            style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                        <h4>AWS Academy – Machine Learning Foundations</h4>
+                        <a href="certificates/g.pdf" download class="cert-download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                    </div>
+                    <div class="cert-card-large"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                        onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                    >
+                        <img src="images/h.png" alt="Cisco Certificate" class="cert-large-img"
+                            style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                        <h4>Cisco – Data Analytics Essentials</h4>
+                        <a href="certificates/h.pdf" download class="cert-download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                    </div>
+                    <div class="cert-card-large"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                        onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                        onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                    >
+                        <img src="images/i.png" alt="Tata Forage Certificate" class="cert-large-img"
+                            style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                        <h4>Tata Forage – Data Visualisation</h4>
+                        <a href="certificates/i.pdf" download class="cert-download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- New Section: Participation Certificates -->
+            <section id="participation" class="dashboard-panel" data-reveal>
+                <h3 class="section-title">07. PARTICIPATION & ACHIEVEMENT CERTIFICATES</h3>
+                <div class="participation-gallery scroll-container" style="display:flex;overflow-x:auto;gap:24px;scroll-snap-type:x mandatory;padding:14px 0 18px 0;">
+                  <div
+                    class="cert-card-large"
+                    style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                  >
+                    <img src="images/j.png" alt="Mathematics Olympiad" class="cert-large-img"
+                        style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                    <div style="flex:1;">
+                      <h4 style="color:#00e0ff;font-weight:600;margin-bottom:6px;">Mathematics Olympiad – Winner</h4>
+                    </div>
+                  </div>
+                  <div
+                    class="cert-card-large"
+                    style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                  >
+                    <img src="images/k.png" alt="Hackathon 1.0" class="cert-large-img"
+                        style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                    <div style="flex:1;">
+                      <h4 style="color:#00e0ff;font-weight:600;margin-bottom:6px;">Hackathon 1.0 – Participant</h4>
+                    </div>
+                  </div>
+                  <div
+                    class="cert-card-large"
+                    style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                  >
+                    <img src="images/l.png" alt="Hackathon 3.0" class="cert-large-img"
+                        style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                    <div style="flex:1;">
+                      <h4 style="color:#00e0ff;font-weight:600;margin-bottom:6px;">Hackathon 3.0 – Participant</h4>
+                    </div>
+                  </div>
+                  <div
+                    class="cert-card-large"
+                    style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                  >
+                    <img src="images/m.png" alt="Code Hunt" class="cert-large-img"
+                        style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                    <div style="flex:1;">
+                      <h4 style="color:#00e0ff;font-weight:600;margin-bottom:6px;">Code Hunt – Certified Participant</h4>
+                    </div>
+                  </div>
+                  <div
+                    class="cert-card-large"
+                    style="display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #00e0ff;border-radius:14px;box-shadow:0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25);padding:14px 18px;background:linear-gradient(145deg,#071b2b,#0b2435);flex:0 0 auto;scroll-snap-align:start;transition:transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8), inset 0 0 20px rgba(0,224,255,0.5)';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,224,255,0.35), inset 0 0 10px rgba(0,224,255,0.25)';"
+                  >
+                    <img src="images/n.png" alt="Deep Learning" class="cert-large-img"
+                        style="width:520px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;transform:rotate(0deg);box-shadow:0 0 18px rgba(0,224,255,0.35);">
+                    <div style="flex:1;">
+                      <h4 style="color:#00e0ff;font-weight:600;margin-bottom:6px;">Deep Learning – Certificate</h4>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+            <!-- H. Hobbies & Achievements Section (Updated) -->
+            <section id="hobbies" class="dashboard-panel hobbies-panel" data-reveal>
+                <h3 class="section-title">08. HOBBIES & ACHIEVEMENTS BEYOND DATA</h3>
+                <div class="hobbies-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; justify-items: center; align-items: stretch; padding: 20px; max-width: 1200px; margin: 0 auto;">
+                    <div class="hobby-card"
+                        style="background: linear-gradient(145deg,#071b2b,#0b2435); border:2px solid #00e0ff80; border-radius:14px; box-shadow:0 0 25px rgba(0,224,255,0.25); padding:22px; text-align:center; transition: all 0.3s ease; max-width:340px; width:100%; height:auto; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;"
+                        onmouseover="this.style.transform='translateY(-8px) scale(1.03)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8)';"
+                        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 0 25px rgba(0,224,255,0.25)';">
+                        <img src="images/f.png" alt="Best Player Award" class="hobby-img" style="width:180px; height:auto; border-radius:12px; border:2px solid #00e0ff70; box-shadow:0 0 16px rgba(0,224,255,0.35); margin-bottom:12px;">
+                        <h4 style="color:#00e0ff;">🏸 Best Player (Badminton)</h4>
+                        <p>Honored with the Best Player award for outstanding performance in badminton. Every rally taught me rhythm, timing, and resilience — the same instincts I apply in coding and AI problem-solving.</p>
+                    </div>
+
+                    <div class="hobby-card"
+                        style="background: linear-gradient(145deg,#071b2b,#0b2435); border:2px solid #00e0ff80; border-radius:14px; box-shadow:0 0 25px rgba(0,224,255,0.25); padding:22px; text-align:center; transition: all 0.3s ease; max-width:340px; width:100%; height:auto; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;"
+                        onmouseover="this.style.transform='translateY(-8px) scale(1.03)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8)';"
+                        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 0 25px rgba(0,224,255,0.25)';">
+                        <img src="images/e.png" alt="Best Student Award" class="hobby-img" style="width:180px; height:auto; border-radius:12px; border:2px solid #00e0ff70; box-shadow:0 0 16px rgba(0,224,255,0.35); margin-bottom:12px;">
+                        <h4 style="color:#00e0ff;">🎓 Best Student Award</h4>
+                        <p>Recognized for consistent academic brilliance and contributions to AI innovation. To me, learning is a constant experiment — transforming logic into creativity and data into discovery.</p>
+                    </div>
+
+                    <div class="hobby-card"
+                        style="background: linear-gradient(145deg,#071b2b,#0b2435); border:2px solid #00e0ff80; border-radius:14px; box-shadow:0 0 25px rgba(0,224,255,0.25); padding:28px 24px; text-align:center; transition: all 0.3s ease; max-width:340px; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;"
+                        onmouseover="this.style.transform='translateY(-8px) scale(1.03)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8)';"
+                        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 0 25px rgba(0,224,255,0.25)';">
+                        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+                            <div style="width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at top left,#00e0ff60,#071b2b);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(0,224,255,0.5);margin-bottom:10px;">
+                                <i class="fas fa-lightbulb" style="font-size:36px;color:#00e0ff;"></i>
+                            </div>
+                            <h4 style="color:#00e0ff;margin-bottom:8px;">💡 Creative Interests</h4>
+                            <p style="line-height:1.6;">Exploring the intersection of art and algorithms through AI-generated visuals and futuristic UI design. I believe creativity is data in motion — constantly evolving, expressive, and limitless. Every design I craft transforms complex data into visual poetry, merging logic with imagination.</p>
+                        </div>
+                    </div>
+
+                    <div class="hobby-card"
+                        style="background: linear-gradient(145deg,#071b2b,#0b2435); border:2px solid #00e0ff80; border-radius:14px; box-shadow:0 0 25px rgba(0,224,255,0.25); padding:22px; text-align:center; transition: all 0.3s ease; max-width:340px; width:100%; height:auto; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;"
+                        onmouseover="this.style.transform='translateY(-8px) scale(1.03)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8)';"
+                        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 0 25px rgba(0,224,255,0.25)';">
+                        <h4 style="color:#00e0ff;">🌍 Tech Explorer</h4>
+                        <p>Constantly exploring new frontiers — from AI ethics to quantum computing. I see technology not as tools but as possibilities to reshape how humans think, create, and connect.</p>
+                    </div>
+
+                    <div class="hobby-card"
+                        style="background: linear-gradient(145deg,#071b2b,#0b2435); border:2px solid #00e0ff80; border-radius:14px; box-shadow:0 0 25px rgba(0,224,255,0.25); padding:22px; text-align:center; transition: all 0.3s ease; max-width:340px; width:100%; height:auto; display:flex; flex-direction:column; justify-content:flex-start; align-items:center;"
+                        onmouseover="this.style.transform='translateY(-8px) scale(1.03)';this.style.boxShadow='0 0 35px rgba(0,224,255,0.8)';"
+                        onmouseout="this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 0 25px rgba(0,224,255,0.25)';">
+                        <h4 style="color:#00e0ff;">🧠 Mind & Motion</h4>
+                        <p>I balance innovation with mindfulness through fitness, meditation, and puzzle-solving. Physical focus strengthens mental clarity — every workout fuels better logic and creativity.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- I. Contact & Footer - THE ATTRACTIVE FINALE (SYSTEM CONNECTION CONSOLE) -->
+            <footer id="contact-footer" class="contact-footer-revamped" data-reveal>
+                <div class="final-contact-console">
+                    <div class="console-header">
+                        CONNECTION STATUS: <span class="highlight-text-secondary">ENGAGED & SECURE</span>
+                    </div>
+                    <div class="contact-grid-final">
+                        
+                        <div class="contact-info-block-final">
+                            <p class="cta-headline-final">SYSTEM READY: INITIATE SECURE LINK</p>
+                            
+                            <!-- Large Connection Button (Ultra Attractive CTA) -->
+                            <a href="https://www.linkedin.com/in/manjot-singh2004" target="_blank" class="final-cta-button">
+                                <i class="fab fa-linkedin-in"></i> INITIATE LINKEDIN PROTOCOL
+                            </a>
+                            
+                            <div class="social-proof-final">
+                                <i class="fas fa-users"></i> 
+                                <span class="stat-number-final">10,440+</span> 
+                                <span class="stat-label-final">Active Followers on Network (Social Proof)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-details-final">
+                            <h4>Direct Access Log</h4>
+                            <div class="detail-line">
+                                <i class="fas fa-envelope highlight-text"></i> 
+                                <span>Email: singhtmanjot@gmail.com</span>
+                            </div>
+                            <div class="detail-line">
+                                <i class="fas fa-phone highlight-text"></i> 
+                                <span>Phone: +91 7087736640</span>
+                            </div>
+                            <div class="detail-line">
+                                <i class="fas fa-code-branch highlight-text"></i> 
+                                <span><a href="https://github.com/manjotsingh9864" target="_blank">GitHub Repository</a></span>
+                            </div>
+                             <a href="Resume.docx" download class="final-download-btn">
+                                <i class="fas fa-file-download"></i> DOWNLOAD RESUME (DOCX)
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="copyright-final">
+                        <p>&copy; 2025 Manjot Singh. AI & Data Science Portfolio | Designed for Maximum Impact.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <!-- Particle.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Neon Streaks Overlay -->
+    <div id="rain-overlay"></div>
+    <script>
+      // Dark/Light mode toggle
+      const modeToggle = document.getElementById('mode-toggle');
+      const modeIcon = document.getElementById('mode-icon');
+      function setDarkMode(on) {
+        if (on) {
+          document.body.classList.add('dark-mode');
+          modeIcon.classList.remove('fa-moon');
+          modeIcon.classList.add('fa-sun');
+        } else {
+          document.body.classList.remove('dark-mode');
+          modeIcon.classList.remove('fa-sun');
+          modeIcon.classList.add('fa-moon');
+        }
+      }
+      modeToggle.addEventListener('click', function() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        setDarkMode(isDark);
+      });
+      // Set icon on load
+      document.addEventListener('DOMContentLoaded', function() {
+        setDarkMode(document.body.classList.contains('dark-mode'));
+      });
+      // Scroll reveal animation (simple)
+      function revealSections() {
+        const reveals = document.querySelectorAll('[data-reveal]');
+        for (const section of reveals) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            section.classList.add('revealed');
+          }
+        }
+      }
+      window.addEventListener('scroll', revealSections);
+      window.addEventListener('DOMContentLoaded', revealSections);
+      // Particle.js init (main hero section)
+      particlesJS('particles-js', {
+        "particles": {
+          "number": { "value": 60, "density": { "enable": true, "value_area": 900 } },
+          "color": { "value": "#00e0ff" },
+          "shape": { "type": "circle" },
+          "opacity": { "value": 0.27, "random": true },
+          "size": { "value": 4, "random": true },
+          "line_linked": { "enable": true, "distance": 150, "color": "#00e0ff", "opacity": 0.13, "width": 1 },
+          "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": true, "mode": "repulse" },
+            "onclick": { "enable": true, "mode": "push" }
+          },
+          "modes": {
+            "repulse": { "distance": 120, "duration": 0.4 },
+            "push": { "particles_nb": 2 }
+          }
+        },
+        "retina_detect": true
+      });
+      // Neon Falling Streaks overlay using particles.js
+      particlesJS('rain-overlay', {
+        "particles": {
+          "number": {
+            "value": 130,
+            "density": { "enable": true, "value_area": 900 }
+          },
+          "color": {
+            "value": [
+              "#00e0ff",
+              "#39ff14",
+              "#00fff7",
+              "#fff700",
+              "#ff00ea"
+            ]
+          },
+          "shape": {
+            "type": "line"
+          },
+          "opacity": {
+            "value": 0.95,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 2.2,
+              "opacity_min": 0.22,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 2.7,
+            "random": true,
+            "anim": {
+              "enable": false
+            }
+          },
+          "line_linked": {
+            "enable": false
+          },
+          "move": {
+            "enable": true,
+            "speed": 50,
+            "direction": "bottom",
+            "random": true,
+            "straight": true,
+            "out_mode": "out",
+            "bounce": false
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": false },
+            "onclick": { "enable": false }
+          }
+        },
+        "retina_detect": true
+      });
+      // Enhance neon effect by drawing glow (canvas hack)
+      function enhanceNeonStreaks() {
+        const overlay = document.getElementById('rain-overlay');
+        const canvas = overlay && overlay.querySelector('canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        // Save original draw function
+        if (!canvas._neonEnhanced) {
+          const origStroke = ctx.stroke;
+          ctx.stroke = function() {
+            ctx.save();
+            ctx.shadowColor = '#00e0ff';
+            ctx.shadowBlur = 22;
+            origStroke.apply(this, arguments);
+            ctx.restore();
+          };
+          canvas._neonEnhanced = true;
+        }
+      }
+      setTimeout(enhanceNeonStreaks, 1200);
+      // Optimize streaks canvas size on resize for full-page coverage
+      function resizeRainCanvas() {
+        const rainCanvas = document.querySelector('#rain-overlay canvas');
+        if (rainCanvas) {
+          rainCanvas.style.width = window.innerWidth + 'px';
+          rainCanvas.style.height = window.innerHeight + 'px';
+          rainCanvas.width = window.innerWidth;
+          rainCanvas.height = window.innerHeight;
+        }
+      }
+      window.addEventListener('resize', resizeRainCanvas);
+      document.addEventListener('DOMContentLoaded', () => setTimeout(resizeRainCanvas, 600));
+    </script>
+</body>
+</html>
+
+
+
